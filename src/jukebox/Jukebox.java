@@ -4,6 +4,8 @@ package jukebox;
  *    Level 1
  */
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -22,15 +24,17 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, ActionListener {
 
 	public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-		Song song = new Song("Beat.mp3");
+		Song song1 = new Song("Beat.mp3");
+		Song song2 = new Song("ScaryBeat.mp3");
+		Song song3 = new Song("NOTEARRAPE.mp3");
+		
 		// 3. Play the Song
-		song.play();
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to choose
 		 * which song to play. You can use can use a different button for each song, or
@@ -41,14 +45,20 @@ public class Jukebox implements Runnable {
 		JPanel panel = new JPanel();
 		JButton button1 = new JButton();
 		button1.setText("Nice Beat");
+		button1.addActionListener(this);
 		JButton button2 = new JButton();
+		button2.setText("Scary Beat");
+		button2.addActionListener(this);
 		JButton button3 = new JButton();
+		button3.setText("Not Earrape");
+		button3.addActionListener(this);
 		panel.add(button1);
 		panel.add(button2);
 		panel.add(button3);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
+		
 		
 	}
 
@@ -57,6 +67,15 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton buttonPressed = (JButton) e.getSource();
+		if(buttonPressed.equals(button1)) {
+			
+		}
+		
 	}
 
 }
