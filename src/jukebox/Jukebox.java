@@ -26,14 +26,18 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Jukebox implements Runnable, ActionListener {
 
+	JButton button1 = new JButton();
+	JButton button2 = new JButton();
+	JButton button3 = new JButton();
+	Song song1 = new Song("Beat.mp3");
+	Song song2 = new Song("Scary.mp3");
+	Song song3 = new Song("Electro.mp3");
+
 	public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-		Song song1 = new Song("Beat.mp3");
-		Song song2 = new Song("ScaryBeat.mp3");
-		Song song3 = new Song("NOTEARRAPE.mp3");
-		
+
 		// 3. Play the Song
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to choose
@@ -43,14 +47,11 @@ public class Jukebox implements Runnable, ActionListener {
 		 */
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
-		JButton button1 = new JButton();
 		button1.setText("Nice Beat");
 		button1.addActionListener(this);
-		JButton button2 = new JButton();
 		button2.setText("Scary Beat");
 		button2.addActionListener(this);
-		JButton button3 = new JButton();
-		button3.setText("Not Earrape");
+		button3.setText("Electro Beat");
 		button3.addActionListener(this);
 		panel.add(button1);
 		panel.add(button2);
@@ -58,8 +59,7 @@ public class Jukebox implements Runnable, ActionListener {
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
-		
-		
+
 	}
 
 	/* Use this method to add album covers to your Panel. */
@@ -72,13 +72,22 @@ public class Jukebox implements Runnable, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
-		if(buttonPressed.equals(button1)) {
-			
+		if (buttonPressed.equals(button1)) {
+			song1.play();
+			song2.stop();
+			song3.stop();
 		}
-		
+		else if (buttonPressed.equals(button2)) {
+			song2.play();
+			song1.stop();
+			song3.stop();
+		}
+		else if (buttonPressed.equals(button3)) {
+			song3.play();
+			song1.stop();
+			song2.stop();
+		}
 	}
-
-}
 
 class Song {
 
@@ -162,4 +171,5 @@ class Song {
 			return this.getClass().getResourceAsStream(songAddress);
 		}
 	}
+}
 }
