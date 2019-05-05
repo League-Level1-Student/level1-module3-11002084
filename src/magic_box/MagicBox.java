@@ -15,6 +15,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -50,6 +51,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	private void createUI() {
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
+		frame.addMouseListener(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,31 +74,40 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println(e.getX()+" , "+e.getY());
+		System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
+		if(e.getX()>=540 && e.getY()<=545 && 365>=e.getY() && e.getY()<=370 || backgroundImage.getRGB(e.getX(), e.getY())==-5142929) {
+			System.out.println("Don't click on me");
+		}
 		// TODO Auto-generated method stub
-		
-	}
+	}	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getX()>=540 && e.getY()<=545 && 365>=e.getY() && e.getY()<=370 || backgroundImage.getRGB(e.getX(), e.getY())==-5142929) {
+			System.out.println("Get off me");
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getX()>=540 && e.getY()<=545 && 365>=e.getY() && e.getY()<=370 || backgroundImage.getRGB(e.getX(), e.getY())==-5142929) {
+			System.out.println("I dare you to click again");
+		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+			System.out.println("Stay Away");
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+			System.out.println("I'm selling you to owo uwu owo");
 		
 	}
 
