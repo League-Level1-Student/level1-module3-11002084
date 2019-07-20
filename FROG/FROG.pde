@@ -1,7 +1,29 @@
 int frogX=400;
 int frogY=525;
 int distance=50;
+
 class Car {
+  boolean intersects(Car car) {
+      if ((frogY > car.getY() && frogY < car.getY()+50) && (frogX > car.getX() && frogX < car.getX()+car.getSize()))
+      {
+             return true;
+      }
+      else 
+      {
+             return false;
+      }
+}
+  void leftEdge(Car car){
+      if(car.getX()<=0-car.getSize()){
+        this.carX=799;
+  }
+}
+  void rightEdge(Car car){
+      if(car.getX()>=800){
+        this.carX=1-car.getSize();
+  }
+}
+  
   int carX;
   int carY;
   int carSize;
@@ -18,10 +40,10 @@ class Car {
     rect(carX, carY, carSize, 50);
   }
   void moveLeft(){
-    carX-=carSpeed;
+    carX=carX-carSpeed;
   }
   void moveRight(){
-    carX+=carSpeed;
+    carX=carX+carSpeed;
   }
   int getX(){
     return(carX);
@@ -33,20 +55,13 @@ class Car {
     return(carSize);
   }
 }
-  boolean intersects(Car car) {
-      if ((frogY > car.getY() && frogY < car.getY()+50) && (frogX > car.getX() && frogX < car.getX()+car.getSize()))
-      {
-             return true;
-      }
-      else 
-      {
-             return false;
-      }
-}
-Car car1=new Car(0, 100, 100, 6);
-Car car2=new Car(800, 200, 50, 12);
-Car car3=new Car(0, 300, 60, 10);
-Car car4=new Car(800, 400, 80, 9);
+
+Car car1=new Car(1, 100, 100, 6);
+Car car1v2=new Car(400, 100,100,6);
+Car car2=new Car(799, 200, 50, 12);
+Car car2v2=new Car(300,200,50, 12);
+Car car3=new Car(1, 300, 60, 10);
+Car car4=new Car(799, 400, 80, 9);
 Car car5=new Car(50, 150, 150, 3);
 Car car6=new Car(700, 250, 120, 4);
 Car car7=new Car(100, 350, 90, 8);
@@ -75,14 +90,54 @@ void draw() {
   car6.moveLeft();
   car7.moveRight();
   car8.moveLeft();
-  intersects(car1);
-  intersects(car2);
-  intersects(car3);
-  intersects(car4);
-  intersects(car5);
-  intersects(car6);
-  intersects(car7);
-  intersects(car8);
+    if(car1.intersects(car1)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car2.intersects(car2)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car3.intersects(car3)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car4.intersects(car4)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car5.intersects(car5)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car6.intersects(car6)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car7.intersects(car7)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+    if(car8.intersects(car8)==(true)){
+    frogX=400;
+    frogY=525;
+  }
+  car1.rightEdge(car1);
+  car2.leftEdge(car2);
+  car3.rightEdge(car3);
+  car4.leftEdge(car4);
+  car5.rightEdge(car5);
+  car6.leftEdge(car6);
+  car7.rightEdge(car7);
+  car8.leftEdge(car8);
+  
+  car1.intersects(car1);
+  car2.intersects(car2);
+  car4.intersects(car4);
+  car5.intersects(car5);
+  car6.intersects(car6);
+  car7.intersects(car7);
+  car8.intersects(car8);
   
   fill(0, 200, 0);
   ellipse(frogX, frogY, 20, 20);
